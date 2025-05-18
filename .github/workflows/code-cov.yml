@@ -19,6 +19,11 @@ jobs:
 
       - name: Run coverage
         run: go test -coverprofile=coverage.txt
+        env:
+          CONSUMER_KEY: ${{ secrets.CONSUMER_KEY }}
+          CONSUMER_SECRET: ${{ secrets.CONSUMER_SECRET }}
+          TOKEN: ${{ secrets.TOKEN }}
+          TOKEN_SECRET: ${{ secrets.TOKEN_SECRET }}
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
