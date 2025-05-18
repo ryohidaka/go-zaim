@@ -1,7 +1,8 @@
 # go-zaim
 
-[![codecov](https://codecov.io/gh/ryohidaka/go-zaim/graph/badge.svg?token=4S2qaMq8BY)](https://codecov.io/gh/ryohidaka/go-zaim)
 ![GitHub Release](https://img.shields.io/github/v/release/ryohidaka/go-zaim)
+[![codecov](https://codecov.io/gh/ryohidaka/go-zaim/graph/badge.svg?token=4S2qaMq8BY)](https://codecov.io/gh/ryohidaka/go-zaim)
+[![Go Report Card](https://goreportcard.com/badge/github.com/ryohidaka/go-zaim)](https://goreportcard.com/report/github.com/ryohidaka/go-zaim)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Go 用 Zaim API クライアント
