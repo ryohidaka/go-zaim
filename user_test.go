@@ -1,6 +1,8 @@
 package zaim_test
 
 import (
+	"log"
+	"os"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -9,6 +11,26 @@ import (
 	"github.com/ryohidaka/go-zaim/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleClient_FetchMe() {
+	// クライアント初期化
+	p := zaim.NewClientParams{
+		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
+		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
+		Token:          os.Getenv("ZAIM_TOKEN"),
+		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
+	}
+
+	c := zaim.NewClient(p)
+
+	// ユーザー情報を取得
+	me, err := c.FetchMe()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	println(me.Name)
+}
 
 func TestFetchMe(t *testing.T) {
 	// モックのHTTPサーバーを有効化
