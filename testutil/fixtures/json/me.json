@@ -1,0 +1,19 @@
+{
+  "me": {
+    "id": 10000000,
+    "login": "XXXXXXX",
+    "name": "MyName",
+    "input_count": 100,
+    "day_count": 10,
+    "repeat_count": 2,
+    "day": 1,
+    "week": 3,
+    "month": 7,
+    "currency_code": "JPY",
+    "profile_image_url": "http://xxx.xxxx/yyy.jpg",
+    "cover_image_url": "http://xxx.xxxx/xxx.jpg",
+    "profile_modified": "2011-11-07 16:47:43",
+    "active": 1
+  },
+  "requested": 1367902710
+}
