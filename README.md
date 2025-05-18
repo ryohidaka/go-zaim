@@ -1,5 +1,6 @@
 # go-zaim
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/ryohidaka/go-zaim.svg)](https://pkg.go.dev/github.com/ryohidaka/go-zaim)
 ![GitHub Release](https://img.shields.io/github/v/release/ryohidaka/go-zaim)
 [![codecov](https://codecov.io/gh/ryohidaka/go-zaim/graph/badge.svg?token=4S2qaMq8BY)](https://codecov.io/gh/ryohidaka/go-zaim)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ryohidaka/go-zaim)](https://goreportcard.com/report/github.com/ryohidaka/go-zaim)
@@ -12,6 +13,10 @@ Go 用 Zaim API クライアント
 ```bash
 go get github.com/ryohidaka/go-zaim
 ```
+
+## ドキュメント
+
+Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-zaim)
 
 ## 使用例
 
