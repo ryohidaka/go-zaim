@@ -7,7 +7,6 @@ import (
 
 	"github.com/jarcoal/httpmock"
 	"github.com/ryohidaka/go-zaim"
-	"github.com/ryohidaka/go-zaim/models"
 	"github.com/ryohidaka/go-zaim/testutil"
 	"github.com/stretchr/testify/assert"
 )
@@ -56,5 +55,5 @@ func TestFetchMe(t *testing.T) {
 	assert.NoError(t, err)
 	assert.Equal(t, int(me.ID), 10000000)
 	assert.Equal(t, me.Name, "MyName")
-	assert.Equal(t, me.Active, models.BoolInt(true))
+	assert.Equal(t, me.Active, true)
 }
