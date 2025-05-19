@@ -1,0 +1,41 @@
+{
+  "money": [
+    {
+      "id": 381,
+      "mode": "income",
+      "user_id": 1,
+      "date": "2011-11-07",
+      "category_id": 11,
+      "genre_id": 0,
+      "to_account_id": 34555,
+      "from_account_id": 0,
+      "amount": 10000,
+      "comment": "",
+      "active": 1,
+      "name": "",
+      "receipt_id": 0,
+      "place": "",
+      "created": "2011-11-07 01:10:50",
+      "currency_code": "JPY"
+    },
+    {
+      "id": 382,
+      "mode": "payment",
+      "user_id": 1,
+      "date": "2011-11-07",
+      "category_id": 101,
+      "genre_id": 10101,
+      "from_account_id": 34555,
+      "to_account_id": 0,
+      "comment": "",
+      "amount": 100,
+      "active": 1,
+      "name": "",
+      "receipt_id": 100293844,
+      "place": "サブウェイ",
+      "created": "2011-11-07 01:12:00",
+      "currency_code": "JPY"
+    }
+  ],
+  "requested": 1321782829
+}
