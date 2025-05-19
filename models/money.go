@@ -17,6 +17,7 @@ type Money struct {
 	Name          string    `json:"name"`
 	ReceiptID     uint64    `json:"receipt_id"`
 	Place         string    `json:"place"`
+	PlaceUID      string    `json:"place_uid"`
 	Created       time.Time `json:"created"`
 	CurrencyCode  string    `json:"currency_code"`
 }
