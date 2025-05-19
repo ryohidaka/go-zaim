@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"strings"
 	"time"
 )
 
@@ -11,25 +12,32 @@ type ZaimTime struct {
 	time.Time
 }
 
-// zaimLayout は Zaim API で使われる日時フォーマットを表す。
-const zaimLayout = "2006-01-02 15:04:05"
+// Zaim API で使われる日時フォーマットを表す。
+const (
+	zaimLayoutDateTime = "2006-01-02 15:04:05"
+	zaimLayoutDate     = "2006-01-02"
+)
 
 // UnmarshalJSON は JSON の日時文字列を ZaimTime 型にパースする。
 // 文字列の両端のダブルクォートを除去してから解析を行い、
 // フォーマットに合わない場合はエラーを返す。
 func (zt *ZaimTime) UnmarshalJSON(b []byte) error {
-	s := string(b)
-	if len(s) < 2 {
-		return fmt.Errorf("invalid time format: %s", s)
-	}
-	// JSONの文字列型のダブルクォート " を取り除く
-	s = s[1 : len(s)-1]
-
-	t, err := time.Parse(zaimLayout, s)
-	if err != nil {
-		return fmt.Errorf("time parse error: %w", err)
+	s := strings.Trim(string(b), `"`)
+	if s == "null" || s == "" {
+		return fmt.Errorf("invalid time format: empty or null")
 	}
 
-	zt.Time = t
-	return nil
+	// 日時付き -> パース
+	if t, err := time.Parse(zaimLayoutDateTime, s); err == nil {
+		zt.Time = t
+		return nil
+	}
+
+	// 日付のみ -> パース
+	if t, err := time.Parse(zaimLayoutDate, s); err == nil {
+		zt.Time = t
+		return nil
+	}
+
+	return fmt.Errorf("ZaimTime parse error: unknown format: %s", s)
 }
