@@ -41,6 +41,9 @@ func main() {
 
     // 認証ユーザーの情報を取得
     me, err := c.FetchMe()
+
+    // 入出金履歴を取得
+	money, err := c.FetchMoney()
 }
 ```
 
