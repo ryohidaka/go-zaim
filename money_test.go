@@ -1,6 +1,8 @@
 package zaim_test
 
 import (
+	"log"
+	"os"
 	"testing"
 	"time"
 
@@ -10,6 +12,28 @@ import (
 	"github.com/ryohidaka/go-zaim/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleClient_FetchMoney() {
+	// クライアント初期化
+	p := zaim.ZaimParams{
+		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
+		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
+		Token:          os.Getenv("ZAIM_TOKEN"),
+		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
+	}
+
+	c := zaim.NewZaimClient(p)
+
+	// 入出金履歴を取得
+	money, err := c.FetchMoney()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, m := range money {
+		println(m.Name)
+	}
+}
 
 func TestFetchMoney(t *testing.T) {
 	// モックのHTTPサーバーを有効化
