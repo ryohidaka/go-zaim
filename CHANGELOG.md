@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/ryohidaka/go-zaim/compare/v0.1.0...v0.2.0) (2025-05-19)
+
+
+### Features
+
+* **api:** FetchMoney() を追加 ([3aa42fc](https://github.com/ryohidaka/go-zaim/commit/3aa42fc95668c82e5d576f08c272f79e3de4f46d))
+* **client:** NewClient() をNewZaimClient() にリネーム ([907e454](https://github.com/ryohidaka/go-zaim/commit/907e454e85641c29092abe34491b369d815f11e4))
+* **client:** NewClientParams をZaimParams にリネーム ([54bbd54](https://github.com/ryohidaka/go-zaim/commit/54bbd54d92b390c20e4e319a049129952600de1c))
+* **client:** リクエストパラメータがある場合はmappingを付与する ([4dc78d0](https://github.com/ryohidaka/go-zaim/commit/4dc78d0151ef0de89c9c55b838546d16d9e986a6))
+* **model:** ZaimTimeを日付のみの形式に対応 ([6e4f799](https://github.com/ryohidaka/go-zaim/commit/6e4f79928db599a6dcfad0b568cdd4b519fd3cdb))
+
 ## 0.1.0 (2025-05-18)
 
 
