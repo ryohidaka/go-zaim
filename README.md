@@ -30,17 +30,20 @@ import "github.com/ryohidaka/go-zaim"
 func main() {
     // 認証情報を取得
     p := zaim.ZaimParams{
-		ConsumerKey:    "<CONSUMER_KEY>",
-		ConsumerSecret: "<CONSUMER_SECRET>",
-		Token:          "<TOKEN>",
-		TokenSecret:    "<TOKEN_SECRET>",
-	}
+        ConsumerKey:    "<CONSUMER_KEY>",
+        ConsumerSecret: "<CONSUMER_SECRET>",
+        Token:          "<TOKEN>",
+        TokenSecret:    "<TOKEN_SECRET>",
+    }
 
     // クライアントを初期化
     c := zaim.NewZaimClient(p)
 
     // 認証ユーザーの情報を取得
     me, err := c.FetchMe()
+
+    // 入出金履歴を取得
+    money, err := c.FetchMoney()
 }
 ```
 
