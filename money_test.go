@@ -90,7 +90,6 @@ func TestFetchMoney(t *testing.T) {
 	}
 
 	for i, m := range money {
-		println(m.ID)
 		assert.Equal(t, expected[i].ID, m.ID, "IDが一致しません")
 		assert.Equal(t, expected[i].Mode, m.Mode, "Modeが一致しません")
 		assert.Equal(t, expected[i].Active, m.Active, "Activeが一致しません")
