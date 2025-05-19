@@ -20,7 +20,7 @@ func ExampleClient_FetchMe() {
 		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
 	}
 
-	c := zaim.NewClient(p)
+	c := zaim.NewZaimClient(p)
 
 	// ユーザー情報を取得
 	me, err := c.FetchMe()
@@ -48,7 +48,7 @@ func TestFetchMe(t *testing.T) {
 	}
 
 	// ユーザー情報を取得
-	c := zaim.NewClient(p)
+	c := zaim.NewZaimClient(p)
 	me, err := c.FetchMe()
 
 	// レスポンスの確認

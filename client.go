@@ -26,7 +26,7 @@ type NewClientParams struct {
 // [Authorize with Oauth 1.0a]
 //
 // [Authorize with Oauth 1.0a]: https://dev.zaim.net/home/api/authorize
-func NewClient(params NewClientParams) *Client {
+func NewZaimClient(params NewClientParams) *Client {
 	httpClient := auth.NewOAuth1Client(auth.OAuth1Params(params))
 	return &Client{
 		httpClient: httpClient,

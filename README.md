@@ -37,7 +37,7 @@ func main() {
 	}
 
     // クライアントを初期化
-    c := zaim.NewClient(p)
+    c := zaim.NewZaimClient(p)
 
     // 認証ユーザーの情報を取得
     me, err := c.FetchMe()
