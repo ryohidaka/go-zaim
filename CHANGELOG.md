@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/ryohidaka/go-zaim/compare/v0.2.0...v0.3.0) (2025-05-19)
+
+
+### Features
+
+* **model:** Money にPlaceUID のフィールドを追加 ([3bcdfaa](https://github.com/ryohidaka/go-zaim/commit/3bcdfaab602922ac72327761bf0a3bff9f829392))
+
 ## [0.2.0](https://github.com/ryohidaka/go-zaim/compare/v0.1.0...v0.2.0) (2025-05-19)
 
 
