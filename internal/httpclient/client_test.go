@@ -91,3 +91,28 @@ func TestDoRequest_StatusError(t *testing.T) {
 		t.Errorf("期待したエラーメッセージにHTTPステータスコードを含む: %v", err)
 	}
 }
+
+// mapping=1 がparamsに自動付与されることを確認
+func TestDoRequest_AppendsMapping(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		values := r.URL.Query()
+		if values.Get("mapping") != "1" {
+			t.Errorf("mapping パラメータが付与されていません: %s", r.URL.RawQuery)
+		}
+		w.WriteHeader(http.StatusOK)
+		_, _ = w.Write([]byte("OK"))
+	}))
+	defer ts.Close()
+
+	params := url.Values{}
+	params.Set("foo", "bar") // paramsがnilでないことを保証
+
+	client := ts.Client()
+	body, err := httpclient.DoRequest(client, http.MethodGet, ts.URL, "/", params)
+	if err != nil {
+		t.Fatalf("エラー発生: %v", err)
+	}
+	if string(body) != "OK" {
+		t.Errorf("期待したレスポンスボディ: OK, 実際: %s", string(body))
+	}
+}

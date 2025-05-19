@@ -12,6 +12,11 @@ import (
 func DoRequest(httpClient *http.Client, method, endpoint, path string, params url.Values) ([]byte, error) {
 	fullURL := endpoint + path
 
+	// mapping=1 を付与（paramsがnilでなければ）
+	if params != nil {
+		params.Set("mapping", "1")
+	}
+
 	req, err := buildRequest(method, fullURL, params)
 	if err != nil {
 		return nil, fmt.Errorf("リクエストの作成に失敗しました: %w", err)
