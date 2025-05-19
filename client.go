@@ -14,7 +14,7 @@ type Client struct {
 }
 
 // OAuth1認証情報をまとめたパラメータ構造体
-type NewClientParams struct {
+type ZaimParams struct {
 	ConsumerKey    string
 	ConsumerSecret string
 	Token          string
@@ -26,7 +26,7 @@ type NewClientParams struct {
 // [Authorize with Oauth 1.0a]
 //
 // [Authorize with Oauth 1.0a]: https://dev.zaim.net/home/api/authorize
-func NewZaimClient(params NewClientParams) *Client {
+func NewZaimClient(params ZaimParams) *Client {
 	httpClient := auth.NewOAuth1Client(auth.OAuth1Params(params))
 	return &Client{
 		httpClient: httpClient,

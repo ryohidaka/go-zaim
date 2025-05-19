@@ -13,7 +13,7 @@ import (
 
 func ExampleClient_FetchMe() {
 	// クライアント初期化
-	p := zaim.NewClientParams{
+	p := zaim.ZaimParams{
 		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
 		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
 		Token:          os.Getenv("ZAIM_TOKEN"),
@@ -40,7 +40,7 @@ func TestFetchMe(t *testing.T) {
 	err := testutil.MockResponseFromFile(zaim.BaseURL+"home/user/verify", "me")
 	assert.NoError(t, err)
 
-	p := zaim.NewClientParams{
+	p := zaim.ZaimParams{
 		ConsumerKey:    "dummy-key",
 		ConsumerSecret: "dummy-secret",
 		Token:          "dummy-token",

@@ -29,7 +29,7 @@ import "github.com/ryohidaka/go-zaim"
 
 func main() {
     // 認証情報を取得
-    p := zaim.NewClientParams{
+    p := zaim.ZaimParams{
 		ConsumerKey:    "<CONSUMER_KEY>",
 		ConsumerSecret: "<CONSUMER_SECRET>",
 		Token:          "<TOKEN>",
