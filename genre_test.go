@@ -1,6 +1,8 @@
 package zaim_test
 
 import (
+	"log"
+	"os"
 	"testing"
 	"time"
 
@@ -10,6 +12,28 @@ import (
 	"github.com/ryohidaka/go-zaim/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleClient_FetchGenres() {
+	// クライアント初期化
+	p := zaim.ZaimParams{
+		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
+		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
+		Token:          os.Getenv("ZAIM_TOKEN"),
+		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
+	}
+
+	c := zaim.NewZaimClient(p)
+
+	// ジャンル一覧を取得する
+	genres, err := c.FetchGenres()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, g := range genres {
+		println(g.Name)
+	}
+}
 
 func TestFetchGenres(t *testing.T) {
 	// モックのHTTPサーバーを有効化
