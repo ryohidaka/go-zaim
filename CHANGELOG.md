@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/ryohidaka/go-zaim/compare/v0.5.0...v0.6.0) (2025-05-20)
+
+
+### Features
+
+* **api:** FetchGenres() を追加 ([d89fdd8](https://github.com/ryohidaka/go-zaim/commit/d89fdd80370408b0497c99a23eac8c3c8a84d31f))
+
 ## [0.5.0](https://github.com/ryohidaka/go-zaim/compare/v0.4.0...v0.5.0) (2025-05-20)
 
 
