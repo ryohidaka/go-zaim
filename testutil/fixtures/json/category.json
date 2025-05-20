@@ -1,0 +1,23 @@
+{
+  "categories": [
+    {
+      "id": 12093,
+      "name": "Food",
+      "mode": "payment",
+      "sort": 1,
+      "parent_category_id": 101,
+      "active": 1,
+      "modified": "2013-01-01 00:00:00"
+    },
+    {
+      "id": 12094,
+      "name": "Daily good",
+      "mode": "payment",
+      "sort": 2,
+      "parent_category_id": 102,
+      "active": 1,
+      "modified": "2013-01-01 00:00:00"
+    }
+  ],
+  "requested": 1321795825
+}
