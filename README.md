@@ -53,6 +53,9 @@ func main() {
 
     // ジャンル一覧を取得する
     genres, err := c.FetchGenres()
+
+    // 口座一覧を取得する
+    accounts, err := c.FetchAccounts()
 }
 ```
 
