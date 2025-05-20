@@ -119,6 +119,17 @@ func TestFetchMoney(t *testing.T) {
 			assert.Equal(t, expected[i].Created, m.Created, "Created が一致しません")
 		}
 	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		// エラーを返すモックを設定
+		url := zaim.BaseURL + "home/money"
+		httpmock.RegisterResponder("GET", url, httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		money, err := c.FetchMoney()
+
+		assert.Error(t, err)
+		assert.Empty(t, money)
+	})
 }
 
 func TestFetchGroupedMoney(t *testing.T) {
@@ -173,5 +184,15 @@ func TestFetchGroupedMoney(t *testing.T) {
 			assert.Equal(t, expected[0].Data[i].Created, m.Created, "Created が一致しません")
 			assert.Equal(t, expected[0].Data[i].Active, m.Active, "Active が一致しません")
 		}
+	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		url := zaim.BaseURL + "home/money?group_by=receipt_id&mapping=1"
+		httpmock.RegisterResponder("GET", url, httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		money, err := c.FetchGroupedMoney()
+
+		assert.Error(t, err)
+		assert.Empty(t, money)
 	})
 }

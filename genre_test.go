@@ -92,4 +92,16 @@ func TestFetchGenres(t *testing.T) {
 			assert.Equal(t, expected[i].Modified, g.Modified, "Modified が一致しません")
 		}
 	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		url := zaim.BaseURL + "home/genre"
+		httpmock.RegisterResponder("GET", url, httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		// ジャンル一覧を取得する
+		genres, err := c.FetchGenres()
+
+		// レスポンスの確認
+		assert.Error(t, err)
+		assert.Empty(t, genres)
+	})
 }

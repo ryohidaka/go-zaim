@@ -58,4 +58,17 @@ func TestFetchMe(t *testing.T) {
 		assert.Equal(t, me.Name, "MyName")
 		assert.Equal(t, me.Active, true)
 	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		// エラーを返すモックに差し替え
+		httpmock.RegisterResponder("GET", zaim.BaseURL+"home/user/verify",
+			httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		// ユーザー情報を取得
+		me, err := c.FetchMe()
+
+		// レスポンスの確認
+		assert.Error(t, err)
+		assert.Empty(t, me)
+	})
 }
