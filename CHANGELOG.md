@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/ryohidaka/go-zaim/compare/v0.3.0...v0.4.0) (2025-05-20)
+
+
+### Features
+
+* **api:** FetchGroupedMoney() を追加 ([181f5fb](https://github.com/ryohidaka/go-zaim/commit/181f5fba2c7f9261f4dc6b72e8ff1cb2c8326d00))
+
 ## [0.3.0](https://github.com/ryohidaka/go-zaim/compare/v0.2.0...v0.3.0) (2025-05-19)
 
 
