@@ -35,6 +35,28 @@ func ExampleClient_FetchMoney() {
 	}
 }
 
+func ExampleClient_FetchGroupedMoney() {
+	// クライアント初期化
+	p := zaim.ZaimParams{
+		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
+		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
+		Token:          os.Getenv("ZAIM_TOKEN"),
+		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
+	}
+
+	c := zaim.NewZaimClient(p)
+
+	// 入出金履歴を取得
+	money, err := c.FetchGroupedMoney()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, m := range money {
+		println(m.ReceiptID)
+	}
+}
+
 func TestFetchMoney(t *testing.T) {
 	// モックのHTTPサーバーを有効化
 	httpmock.Activate()
