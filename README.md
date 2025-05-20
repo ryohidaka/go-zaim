@@ -52,7 +52,7 @@ func main() {
     categories, err := c.FetchCategories()
 
     // ジャンル一覧を取得する
-	genres, err := c.FetchGenres()
+    genres, err := c.FetchGenres()
 }
 ```
 
