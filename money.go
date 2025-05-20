@@ -1,9 +1,6 @@
 package zaim
 
 import (
-	"net/url"
-
-	"github.com/google/go-querystring/query"
 	"github.com/ryohidaka/go-zaim/internal/api"
 	"github.com/ryohidaka/go-zaim/models"
 )
@@ -21,14 +18,9 @@ type FetchMoneyParams struct {
 
 // FetchMoney はユーザーの入出金履歴を取得する
 func (c *Client) FetchMoney(opts ...FetchMoneyParams) ([]models.Money, error) {
-	var v url.Values
-
-	if len(opts) > 0 {
-		values, err := query.Values(opts[0])
-		if err != nil {
-			return nil, err
-		}
-		v = values
+	v, err := api.BuildQueryParams(opts...)
+	if err != nil {
+		return nil, err
 	}
 
 	body, err := c.get("home/money", v)
@@ -41,15 +33,9 @@ func (c *Client) FetchMoney(opts ...FetchMoneyParams) ([]models.Money, error) {
 
 // FetchGroupedMoney は group_by=receipt_id 形式で入出金履歴を取得する
 func (c *Client) FetchGroupedMoney(opts ...FetchMoneyParams) ([]models.GroupedMoney, error) {
-	v := make(url.Values)
-
-	// オプションが指定されていればパラメータに変換する
-	if len(opts) > 0 {
-		values, err := query.Values(opts[0])
-		if err != nil {
-			return nil, err
-		}
-		v = values
+	v, err := api.BuildQueryParams(opts...)
+	if err != nil {
+		return nil, err
 	}
 
 	// group_by に receipt_id を強制的に追加（上書き）する
