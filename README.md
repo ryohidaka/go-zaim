@@ -44,6 +44,9 @@ func main() {
 
     // 入出金履歴を取得
     money, err := c.FetchMoney()
+
+    // 入出金履歴を取得 (グルーピング形式)
+    money, err := c.FetchGroupedMoney()
 }
 ```
 
