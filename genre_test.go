@@ -40,11 +40,6 @@ func TestFetchGenres(t *testing.T) {
 	httpmock.Activate()
 	defer httpmock.DeactivateAndReset()
 
-	// モックレスポンスを設定
-	url := zaim.BaseURL + "home/genre"
-	err := testutil.MockResponseFromFile(url, "genre")
-	assert.NoError(t, err)
-
 	p := zaim.ZaimParams{
 		ConsumerKey:    "dummy-key",
 		ConsumerSecret: "dummy-secret",
@@ -52,42 +47,49 @@ func TestFetchGenres(t *testing.T) {
 		TokenSecret:    "dummy-secret",
 	}
 
-	// ジャンル一覧を取得する
 	c := zaim.NewZaimClient(p)
-	genres, err := c.FetchGenres()
 
-	// レスポンスの確認
-	assert.NoError(t, err)
-	assert.Equal(t, len(genres), 2)
+	t.Run("正常系: ジャンル一覧を取得できる", func(t *testing.T) {
+		url := zaim.BaseURL + "home/genre"
+		err := testutil.MockResponseFromFile(url, "genre")
+		assert.NoError(t, err)
 
-	expected := []models.Genre{
-		{
-			ID:            12093,
-			Name:          "Geocery",
-			Sort:          1,
-			Active:        true,
-			CategoryID:    101,
-			ParentGenreID: 10101,
-			Modified:      time.Date(2013, 1, 1, 0, 0, 0, 0, time.UTC),
-		},
-		{
-			ID:            12094,
-			Name:          "Tabacco",
-			Sort:          1,
-			Active:        true,
-			CategoryID:    102,
-			ParentGenreID: 10201,
-			Modified:      time.Date(2013, 1, 1, 0, 0, 0, 0, time.UTC),
-		},
-	}
+		// ジャンル一覧を取得する
+		genres, err := c.FetchGenres()
 
-	for i, g := range genres {
-		assert.Equal(t, expected[i].ID, g.ID, "IDが一致しません")
-		assert.Equal(t, expected[i].Name, g.Name, "Nameが一致しません")
-		assert.Equal(t, expected[i].Sort, g.Sort, "Sortが一致しません")
-		assert.Equal(t, expected[i].Active, g.Active, "Activeが一致しません")
-		assert.Equal(t, expected[i].CategoryID, g.CategoryID, "CategoryIDが一致しません")
-		assert.Equal(t, expected[i].ParentGenreID, g.ParentGenreID, "ParentGenreIDが一致しません")
-		assert.Equal(t, expected[i].Modified, g.Modified, "Modifiedが一致しません")
-	}
+		// レスポンスの確認
+		assert.NoError(t, err)
+		assert.Equal(t, len(genres), 2)
+
+		expected := []models.Genre{
+			{
+				ID:            12093,
+				Name:          "Geocery",
+				Sort:          1,
+				Active:        true,
+				CategoryID:    101,
+				ParentGenreID: 10101,
+				Modified:      time.Date(2013, 1, 1, 0, 0, 0, 0, time.UTC),
+			},
+			{
+				ID:            12094,
+				Name:          "Tabacco",
+				Sort:          1,
+				Active:        true,
+				CategoryID:    102,
+				ParentGenreID: 10201,
+				Modified:      time.Date(2013, 1, 1, 0, 0, 0, 0, time.UTC),
+			},
+		}
+
+		for i, g := range genres {
+			assert.Equal(t, expected[i].ID, g.ID, "ID が一致しません")
+			assert.Equal(t, expected[i].Name, g.Name, "Name が一致しません")
+			assert.Equal(t, expected[i].Sort, g.Sort, "Sort が一致しません")
+			assert.Equal(t, expected[i].Active, g.Active, "Active が一致しません")
+			assert.Equal(t, expected[i].CategoryID, g.CategoryID, "CategoryID が一致しません")
+			assert.Equal(t, expected[i].ParentGenreID, g.ParentGenreID, "ParentGenreID が一致しません")
+			assert.Equal(t, expected[i].Modified, g.Modified, "Modified が一致しません")
+		}
+	})
 }
