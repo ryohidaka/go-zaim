@@ -97,3 +97,58 @@ func TestFetchMoney(t *testing.T) {
 		assert.Equal(t, expected[i].Created, m.Created, "Createdが一致しません")
 	}
 }
+
+func TestFetchGroupedMoney(t *testing.T) {
+	// モックのHTTPサーバーを有効化
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	p := zaim.ZaimParams{
+		ConsumerKey:    "dummy-key",
+		ConsumerSecret: "dummy-secret",
+		Token:          "dummy-token",
+		TokenSecret:    "dummy-secret",
+	}
+
+	// 入出金履歴を取得
+	c := zaim.NewZaimClient(p)
+
+	// モックレスポンスを設定
+	url := zaim.BaseURL + "home/money?group_by=receipt_id&mapping=1"
+	err := testutil.MockResponseFromFile(url, "money-grouped")
+	assert.NoError(t, err)
+
+	money, err := c.FetchGroupedMoney()
+
+	// レスポンスの確認
+	assert.NoError(t, err)
+
+	expected := []models.GroupedMoney{
+		{
+			Amount:        1800,
+			FromAccountID: 34555,
+			Date:          time.Date(2011, 11, 7, 0, 0, 0, 0, time.UTC),
+			Data: []models.GroupedMoneyData{
+				{
+					ID:      381,
+					Created: time.Date(2011, 11, 7, 1, 10, 50, 0, time.UTC),
+					Active:  true,
+				}, {
+					ID:      382,
+					Created: time.Date(2011, 11, 7, 1, 12, 0, 0, time.UTC),
+					Active:  true,
+				},
+			},
+		},
+	}
+
+	assert.Equal(t, expected[0].Amount, money[0].Amount, "Amountが一致しません")
+	assert.Equal(t, expected[0].FromAccountID, money[0].FromAccountID, "FromAccountIDが一致しません")
+	assert.Equal(t, expected[0].Date, money[0].Date, "FromAccountIDが一致しません")
+
+	for i, m := range money[0].Data {
+		assert.Equal(t, expected[0].Data[i].ID, m.ID, "IDが一致しません")
+		assert.Equal(t, expected[0].Data[i].Created, m.Created, "Createdが一致しません")
+		assert.Equal(t, expected[0].Data[i].Active, m.Active, "Activeが一致しません")
+	}
+}

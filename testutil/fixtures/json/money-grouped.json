@@ -1,0 +1,42 @@
+{
+  "money": [
+    {
+      "amount": 1800,
+      "to_account_id": 0,
+      "from_account_id": 34555,
+      "date": "2011-11-07",
+      "receipt_id": 100293844,
+      "mode": "payment",
+      "place_uid": "",
+      "category_id": 101,
+      "genre_id": 10101,
+      "currency_code": "JPY",
+      "data": [
+        {
+          "id": 381,
+          "category_id": 101,
+          "genre_id": 10101,
+          "amount": -48,
+          "comment": "",
+          "active": 1,
+          "created": "2011-11-07 01:10:50",
+          "name": "",
+          "receipt_id": 100293844
+        },
+        {
+          "id": 382,
+          "category_id": 101,
+          "genre_id": 10101,
+          "amount": 1848,
+          "comment": "",
+          "active": 1,
+          "created": "2011-11-07 01:12:00",
+          "name": "",
+          "receipt_id": 100293844
+        }
+      ],
+      "place": "サブウェイ"
+    }
+  ],
+  "requested": 1321782829
+}
