@@ -41,6 +41,34 @@ func ExampleClient_CreatePayment() {
 	println(res.Money.Modified.String())
 }
 
+func ExampleClient_UpdatePayment() {
+	// クライアント初期化
+	p := zaim.ZaimParams{
+		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
+		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
+		Token:          os.Getenv("ZAIM_TOKEN"),
+		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
+	}
+
+	c := zaim.NewZaimClient(p)
+
+	params := zaim.UpdatePaymentParams{
+		CategoryID: 102,
+		GenreID:    10202,
+		Amount:     1,
+		Date:       time.Now(),
+	}
+
+	// 支払情報を更新
+	res, err := c.UpdatePayment(381, params)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	println(res.Money.ID)
+	println(res.Money.Modified.String())
+}
+
 func TestCreatePayment(t *testing.T) {
 	// モックのHTTPサーバーを有効化
 	httpmock.Activate()
