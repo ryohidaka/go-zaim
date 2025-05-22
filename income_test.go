@@ -1,6 +1,8 @@
 package zaim_test
 
 import (
+	"log"
+	"os"
 	"testing"
 	"time"
 
@@ -10,6 +12,33 @@ import (
 	"github.com/ryohidaka/go-zaim/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleClient_CreateIncome() {
+	// クライアント初期化
+	p := zaim.ZaimParams{
+		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
+		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
+		Token:          os.Getenv("ZAIM_TOKEN"),
+		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
+	}
+
+	c := zaim.NewZaimClient(p)
+
+	params := zaim.CreateIncomeParams{
+		CategoryID: 102,
+		Amount:     1,
+		Date:       time.Now(),
+	}
+
+	// 収入情報を登録
+	res, err := c.CreateIncome(params)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	println(res.Money.ID)
+	println(res.Money.Modified.String())
+}
 
 func TestCreateIncome(t *testing.T) {
 	// モックのHTTPサーバーを有効化
