@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.9.0](https://github.com/ryohidaka/go-zaim/compare/v0.8.0...v0.9.0) (2025-05-22)
+
+
+### Features
+
+* **api:** CreateIncome() を追加 ([c27e368](https://github.com/ryohidaka/go-zaim/commit/c27e368df1a3fc2a8670e64559b56e1d8378549d))
+* **api:** DeleteIncome() を追加 ([58ecd6f](https://github.com/ryohidaka/go-zaim/commit/58ecd6f034ee53a43591a34df1a1653857fba0e6))
+* **api:** UpdateIncome() を追加 ([4b5141f](https://github.com/ryohidaka/go-zaim/commit/4b5141fdcdf1bfee7ee3795be629c9d25426343a))
+
 ## [0.8.0](https://github.com/ryohidaka/go-zaim/compare/v0.7.0...v0.8.0) (2025-05-22)
 
 
