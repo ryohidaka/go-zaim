@@ -63,6 +63,13 @@ func main() {
 		GenreID:    10202,
 		Amount:     1,
 	})
+
+    // 支払情報を更新する
+    res, err := c.UpdatePayment(381, zaim.UpdatePaymentParams{
+        CategoryID: 102,
+        GenreID:    10202,
+        Amount:     1,
+    })
 }
 ```
 
