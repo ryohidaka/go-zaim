@@ -46,7 +46,7 @@ func TestFetchMe(t *testing.T) {
 
 	t.Run("正常系: ユーザー情報を正しく取得できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile(zaim.BaseURL+"home/user/verify", "me")
+		err := testutil.MockResponseFromFile("GET", zaim.BaseURL+"home/user/verify", "me")
 		assert.NoError(t, err)
 
 		// ユーザー情報を取得

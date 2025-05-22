@@ -9,16 +9,8 @@ import (
 )
 
 // MockResponseFromFile は、指定された URL パスおよび HTTP メソッド（GET など）に対して、
-// 外部の JSON ファイルから API レスポンスをモック（模擬）する関数です。
-// JSON ファイルを読み取り、その内容を httpmock パッケージを使ってモックとして登録します。
-//
-// パラメータ:
-// - url: モックレスポンスを登録する対象の URL パス
-// - path: モックデータが保存されている JSON ファイルの名前（拡張子 .json は不要）
-//
-// 戻り値:
-// - ファイルの読み込みやモック登録に失敗した場合は error を返します
-func MockResponseFromFile(url, path string) error {
+// 外部の JSON ファイルから API レスポンスをモック（模擬）する
+func MockResponseFromFile(method, url, path string) error {
 	// JSON ファイルを開く
 	file, err := os.Open("testutil/fixtures/json/" + path + ".json")
 	if err != nil {
@@ -33,7 +25,7 @@ func MockResponseFromFile(url, path string) error {
 	}
 
 	// 指定された URL パスに対して、GET メソッドのモックレスポンスを登録
-	httpmock.RegisterResponder("GET", url,
+	httpmock.RegisterResponder(method, url,
 		httpmock.NewStringResponder(200, string(data)))
 
 	return nil

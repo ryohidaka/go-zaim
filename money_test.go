@@ -73,7 +73,7 @@ func TestFetchMoney(t *testing.T) {
 	t.Run("正常系: 入出金履歴を取得できる", func(t *testing.T) {
 		// 正常レスポンスを登録
 		url := zaim.BaseURL + "home/money?category_id=101&end_date=2024-01-31&genre_id=5&limit=50&mapping=1&mode=payment&order=id&page=2&start_date=2024-01-01"
-		err := testutil.MockResponseFromFile(url, "money")
+		err := testutil.MockResponseFromFile("GET", url, "money")
 		assert.NoError(t, err)
 
 		// 入出金履歴を取得
@@ -146,7 +146,7 @@ func TestFetchGroupedMoney(t *testing.T) {
 
 	t.Run("正常系: グループ化された入出金履歴を取得できる", func(t *testing.T) {
 		url := zaim.BaseURL + "home/money?group_by=receipt_id&mapping=1"
-		err := testutil.MockResponseFromFile(url, "money-grouped")
+		err := testutil.MockResponseFromFile("GET", url, "money-grouped")
 		assert.NoError(t, err)
 
 		// 入出金履歴を取得
