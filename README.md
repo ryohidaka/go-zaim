@@ -70,6 +70,9 @@ func main() {
         GenreID:    10202,
         Amount:     1,
     })
+
+    // 支払情報を削除する
+    res, err := c.DeletePayment(381)
 }
 ```
 
