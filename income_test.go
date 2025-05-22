@@ -40,6 +40,34 @@ func ExampleClient_CreateIncome() {
 	println(res.Money.Modified.String())
 }
 
+func ExampleClient_UpdateIncome() {
+	// クライアント初期化
+	p := zaim.ZaimParams{
+		ConsumerKey:    os.Getenv("ZAIM_CONSUMER_KEY"),
+		ConsumerSecret: os.Getenv("ZAIM_CONSUMER_SECRET"),
+		Token:          os.Getenv("ZAIM_TOKEN"),
+		TokenSecret:    os.Getenv("ZAIM_TOKEN_SECRET"),
+	}
+
+	c := zaim.NewZaimClient(p)
+
+	params := zaim.UpdateIncomeParams{
+		CategoryID: 102,
+		GenreID:    10202,
+		Amount:     1,
+		Date:       time.Now(),
+	}
+
+	// 収入情報を更新
+	res, err := c.UpdateIncome(381, params)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	println(res.Money.ID)
+	println(res.Money.Modified.String())
+}
+
 func TestCreateIncome(t *testing.T) {
 	// モックのHTTPサーバーを有効化
 	httpmock.Activate()
