@@ -104,3 +104,70 @@ func TestCreateIncome(t *testing.T) {
 		assert.Empty(t, res)
 	})
 }
+
+func TestUpdateIncome(t *testing.T) {
+	// モックのHTTPサーバーを有効化
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	p := zaim.ZaimParams{
+		ConsumerKey:    "dummy-key",
+		ConsumerSecret: "dummy-secret",
+		Token:          "dummy-token",
+		TokenSecret:    "dummy-secret",
+	}
+	c := zaim.NewZaimClient(p)
+
+	now := time.Now()
+	fromAccountID := uint64(1)
+	comment := "test-comment"
+	name := "test-name"
+
+	params := zaim.UpdateIncomeParams{
+		CategoryID:    7,
+		GenreID:       10101,
+		Amount:        0,
+		Date:          now,
+		FromAccountID: &fromAccountID,
+		Comment:       &comment,
+		Name:          &name,
+	}
+
+	t.Run("正常系: 収入情報を正しく更新できる", func(t *testing.T) {
+		// 正常なレスポンスを返すモックを設定
+		err := testutil.MockResponseFromFile("PUT", zaim.BaseURL+"home/money/income/11820767", "income")
+		assert.NoError(t, err)
+
+		// 収入情報を更新
+		res, err := c.UpdateIncome(11820767, params)
+
+		// レスポンスの確認
+		assert.NoError(t, err)
+
+		m := res.Money
+		assert.Equal(t, int(m.ID), 11820767)
+		assert.Equal(t, m.Modified, time.Date(2013, 7, 8, 21, 4, 54, 0, time.UTC))
+
+		u := res.User
+		assert.Equal(t, u.DataModified, time.Date(2013, 7, 8, 21, 4, 56, 0, time.UTC))
+		assert.Equal(t, int(u.InputCount), 12)
+
+		p := res.Place
+		assert.Equal(t, p.Mode, models.Income)
+		assert.Equal(t, p.CategoryID, params.CategoryID)
+		assert.Equal(t, p.GenreID, params.GenreID)
+	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		// エラーを返すモックに差し替え
+		httpmock.RegisterResponder("PUT", zaim.BaseURL+"home/money/income/11820767",
+			httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		// 収入情報を更新
+		res, err := c.UpdateIncome(11820767, params)
+
+		// レスポンスの確認
+		assert.Error(t, err)
+		assert.Empty(t, res)
+	})
+}
