@@ -1,0 +1,77 @@
+package zaim_test
+
+import (
+	"testing"
+	"time"
+
+	"github.com/jarcoal/httpmock"
+	"github.com/ryohidaka/go-zaim"
+	"github.com/ryohidaka/go-zaim/models"
+	"github.com/ryohidaka/go-zaim/testutil"
+	"github.com/stretchr/testify/assert"
+)
+
+func TestCreateIncome(t *testing.T) {
+	// モックのHTTPサーバーを有効化
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	p := zaim.ZaimParams{
+		ConsumerKey:    "dummy-key",
+		ConsumerSecret: "dummy-secret",
+		Token:          "dummy-token",
+		TokenSecret:    "dummy-secret",
+	}
+	c := zaim.NewZaimClient(p)
+
+	now := time.Now()
+	toAccountID := uint64(1)
+	comment := "test-comment"
+	place := "test-place"
+
+	params := zaim.CreateIncomeParams{
+		CategoryID:  7,
+		Amount:      0,
+		Date:        now,
+		ToAccountID: &toAccountID,
+		Comment:     &comment,
+		Place:       &place,
+	}
+
+	t.Run("正常系: 収入情報を正しく登録できる", func(t *testing.T) {
+		// 正常なレスポンスを返すモックを設定
+		err := testutil.MockResponseFromFile("POST", zaim.BaseURL+"home/money/income", "income")
+		assert.NoError(t, err)
+
+		// 収入情報を登録
+		res, err := c.CreateIncome(params)
+
+		// レスポンスの確認
+		assert.NoError(t, err)
+
+		m := res.Money
+		assert.Equal(t, int(m.ID), 11820767)
+		assert.Equal(t, m.Modified, time.Date(2013, 7, 8, 21, 4, 54, 0, time.UTC))
+
+		u := res.User
+		assert.Equal(t, u.DataModified, time.Date(2013, 7, 8, 21, 4, 56, 0, time.UTC))
+		assert.Equal(t, int(u.InputCount), 12)
+
+		p := res.Place
+		assert.Equal(t, p.Mode, models.Income)
+		assert.Equal(t, p.CategoryID, params.CategoryID)
+	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		// エラーを返すモックに差し替え
+		httpmock.RegisterResponder("POST", zaim.BaseURL+"home/money/income",
+			httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		// 収入情報を登録
+		res, err := c.CreateIncome(params)
+
+		// レスポンスの確認
+		assert.Error(t, err)
+		assert.Empty(t, res)
+	})
+}
