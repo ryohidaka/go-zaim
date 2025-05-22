@@ -73,6 +73,21 @@ func main() {
 
     // 支払情報を削除する
     res, err := c.DeletePayment(381)
+
+    // 収入情報を登録する
+    res, err := c.CreateIncome(zaim.CreateIncomeParams{
+        CategoryID: 102,
+        Amount:     1,
+    })
+
+    // 収入情報を更新する
+    res, err := c.UpdateIncome(381, zaim.UpdateIncomeParams{
+        CategoryID: 102,
+        Amount:     1,
+    })
+
+    // 収入情報を削除する
+    res, err := c.DeleteIncome(381)
 }
 ```
 
