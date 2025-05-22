@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.8.0](https://github.com/ryohidaka/go-zaim/compare/v0.7.0...v0.8.0) (2025-05-22)
+
+
+### Features
+
+* **api:** CreatePayment() を追加 ([6b77589](https://github.com/ryohidaka/go-zaim/commit/6b775890a344d0c81ee745a4fcc3c3c99e4a0ea4))
+* **api:** DeletePayment() を追加 ([a1222b2](https://github.com/ryohidaka/go-zaim/commit/a1222b2bd7bb1b6bd8548f4eff641aba67e2158a))
+* **api:** UpdatePayment() を追加 ([180ccd6](https://github.com/ryohidaka/go-zaim/commit/180ccd625047636f3d0fea7a79659f84648bc3e6))
+* **testutil:** GET以外のメソッドも指定できるようにモック生成処理を変更 ([92118d8](https://github.com/ryohidaka/go-zaim/commit/92118d8c4ce7fe5d0abea7bc430746f2bb09a8bd))
+
 ## [0.7.0](https://github.com/ryohidaka/go-zaim/compare/v0.6.0...v0.7.0) (2025-05-20)
 
 
