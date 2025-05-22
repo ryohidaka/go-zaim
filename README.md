@@ -23,6 +23,8 @@ Read [GoDoc](https://pkg.go.dev/github.com/ryohidaka/go-zaim)
 > [!IMPORTANT]
 > 一部の API エンドポイントでは `OAuth 1.0a` での認証が必須です。
 
+### 初期化
+
 ```go
 import "github.com/ryohidaka/go-zaim"
 
@@ -38,57 +40,85 @@ func main() {
 
     // クライアントを初期化
     c := zaim.NewZaimClient(p)
-
-    // 認証ユーザーの情報を取得
-    me, err := c.FetchMe()
-
-    // 入出金履歴を取得
-    money, err := c.FetchMoney()
-
-    // 入出金履歴を取得 (グルーピング形式)
-    money, err := c.FetchGroupedMoney()
-
-    // カテゴリ一覧を取得
-    categories, err := c.FetchCategories()
-
-    // ジャンル一覧を取得する
-    genres, err := c.FetchGenres()
-
-    // 口座一覧を取得する
-    accounts, err := c.FetchAccounts()
-
-    // 支払情報を登録する
-	res, err := c.CreatePayment(zaim.CreatePaymentParams{
-		CategoryID: 102,
-		GenreID:    10202,
-		Amount:     1,
-	})
-
-    // 支払情報を更新する
-    res, err := c.UpdatePayment(381, zaim.UpdatePaymentParams{
-        CategoryID: 102,
-        GenreID:    10202,
-        Amount:     1,
-    })
-
-    // 支払情報を削除する
-    res, err := c.DeletePayment(381)
-
-    // 収入情報を登録する
-    res, err := c.CreateIncome(zaim.CreateIncomeParams{
-        CategoryID: 102,
-        Amount:     1,
-    })
-
-    // 収入情報を更新する
-    res, err := c.UpdateIncome(381, zaim.UpdateIncomeParams{
-        CategoryID: 102,
-        Amount:     1,
-    })
-
-    // 収入情報を削除する
-    res, err := c.DeleteIncome(381)
 }
+```
+
+### ユーザー情報
+
+```go
+// 認証ユーザーの情報を取得
+me, err := c.FetchMe()
+```
+
+### 入出金履歴
+
+```go
+// 入出金履歴を取得
+money, err := c.FetchMoney()
+
+// 入出金履歴を取得 (グルーピング形式)
+money, err := c.FetchGroupedMoney()
+```
+
+### カテゴリ
+
+```go
+// カテゴリ一覧を取得
+categories, err := c.FetchCategories()
+```
+
+### ジャンル
+
+```go
+// ジャンル一覧を取得する
+genres, err := c.FetchGenres()
+```
+
+### 口座
+
+```go
+// 口座一覧を取得する
+accounts, err := c.FetchAccounts()
+```
+
+### 支払情報
+
+```go
+// 支払情報を登録する
+res, err := c.CreatePayment(zaim.CreatePaymentParams{
+    CategoryID: 102,
+    GenreID:    10202,
+    Amount:     1,
+})
+
+// 支払情報を更新する
+res, err := c.UpdatePayment(381, zaim.UpdatePaymentParams{
+    CategoryID: 102,
+    GenreID:    10202,
+    Amount:     1,
+})
+
+// 支払情報を削除する
+res, err := c.DeletePayment(381)
+```
+
+### 収入情報
+
+```go
+// 収入情報を登録する
+res, err := c.CreateIncome(zaim.CreateIncomeParams{
+    CategoryID: 102,
+    Amount:     1,
+})
+
+// 収入情報を更新する
+res, err := c.UpdateIncome(381, zaim.UpdateIncomeParams{
+    CategoryID: 102,
+    Amount:     1,
+})
+
+// 収入情報を削除する
+res, err := c.DeleteIncome(381)
 ```
 
 ## リンク
