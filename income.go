@@ -63,3 +63,14 @@ func (c *Client) UpdateIncome(id uint64, p UpdateIncomeParams) (models.Transacti
 
 	return api.ParseTransactionResponse(body)
 }
+
+// DeleteIncome は収入情報を削除する
+func (c *Client) DeleteIncome(id uint64) (models.Transaction, error) {
+	path := fmt.Sprintf("home/money/income/%d", id)
+	body, err := c.delete(path)
+	if err != nil {
+		return models.Transaction{}, err
+	}
+
+	return api.ParseTransactionResponse(body)
+}
