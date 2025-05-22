@@ -1,0 +1,37 @@
+{
+  "stamps": null,
+  "banners": [],
+  "money": {
+    "id": 11820767,
+    "place_uid": "zm-xxxxxx",
+    "modified": "2013-07-08 21:04:54"
+  },
+  "place": {
+    "id": 58,
+    "user_id": 1,
+    "genre_id": 10101,
+    "category_id": 7,
+    "account_id": 3,
+    "transfer_account_id": 0,
+    "mode": "payment",
+    "place_uid": "zm-098f6bcd4621d373",
+    "service": "place",
+    "name": "test-place",
+    "original_name": "test",
+    "tel": "",
+    "count": 2,
+    "place_pattern_id": 0,
+    "calc_flag": 10,
+    "edit_flag": 0,
+    "active": 1,
+    "modified": "2017-06-28 18:24:51",
+    "created": "2016-12-07 23:37:48"
+  },
+  "user": {
+    "input_count": 12,
+    "repeat_count": 1,
+    "day_count": 10,
+    "data_modified": "2013-07-08 21:04:56"
+  },
+  "requested": 1305217527
+}
