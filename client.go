@@ -50,6 +50,6 @@ func (c *Client) put(path string, params url.Values) ([]byte, error) {
 }
 
 // DELETEリクエストを送信する
-func (c *Client) delete(path string, params url.Values) ([]byte, error) {
-	return httpclient.DoRequest(c.httpClient, http.MethodDelete, c.endpoint, path, params)
+func (c *Client) delete(path string) ([]byte, error) {
+	return httpclient.DoRequest(c.httpClient, http.MethodDelete, c.endpoint, path, nil)
 }

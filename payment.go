@@ -65,3 +65,14 @@ func (c *Client) UpdatePayment(id uint64, p UpdatePaymentParams) (models.Transac
 
 	return api.ParseTransactionResponse(body)
 }
+
+// DeletePayment は支払情報を削除する
+func (c *Client) DeletePayment(id uint64) (models.Transaction, error) {
+	path := fmt.Sprintf("home/money/payment/%d", id)
+	body, err := c.delete(path)
+	if err != nil {
+		return models.Transaction{}, err
+	}
+
+	return api.ParseTransactionResponse(body)
+}
