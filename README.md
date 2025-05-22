@@ -56,6 +56,13 @@ func main() {
 
     // 口座一覧を取得する
     accounts, err := c.FetchAccounts()
+
+    // 支払情報を登録する
+	res, err := c.CreatePayment(zaim.CreatePaymentParams{
+		CategoryID: 102,
+		GenreID:    10202,
+		Amount:     1,
+	})
 }
 ```
 
