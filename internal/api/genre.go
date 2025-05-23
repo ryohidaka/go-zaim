@@ -28,3 +28,15 @@ func ParseGenreResponse(body []byte) ([]models.Genre, error) {
 
 	return genres, nil
 }
+
+func ParseDefaultGenreResponse(body []byte) ([]models.DefaultGenre, error) {
+	var raw struct {
+		Genres []models.DefaultGenre `json:"genres"`
+	}
+
+	if err := json.Unmarshal(body, &raw); err != nil {
+		return nil, err
+	}
+
+	return raw.Genres, nil
+}

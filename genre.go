@@ -14,3 +14,13 @@ func (c *Client) FetchGenres() ([]models.Genre, error) {
 
 	return api.ParseGenreResponse(body)
 }
+
+// FetchDefaultGenres はデフォルトのジャンル一覧を取得する
+func (c *Client) FetchDefaultGenres() ([]models.DefaultGenre, error) {
+	body, err := c.get("genre", nil, false)
+	if err != nil {
+		return nil, err
+	}
+
+	return api.ParseDefaultGenreResponse(body)
+}

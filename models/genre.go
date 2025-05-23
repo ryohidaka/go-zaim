@@ -12,3 +12,9 @@ type Genre struct {
 	ParentGenreID uint16    `json:"parent_genre_id"`
 	LocalID       uint16    `json:"local_id"`
 }
+
+type DefaultGenre struct {
+	ID         uint16 `json:"id"`
+	CategoryID uint16 `json:"category_id"`
+	Name       string `json:"name"`
+}
