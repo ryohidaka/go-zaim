@@ -79,6 +79,9 @@ genres, err := c.FetchGenres()
 ```go
 // 口座一覧を取得する
 accounts, err := c.FetchAccounts()
+
+// デフォルト口座一覧を取得する
+accounts, err := c.FetchDefaultAccounts()
 ```
 
 ### 支払情報
