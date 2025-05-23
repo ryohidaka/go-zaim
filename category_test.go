@@ -51,7 +51,7 @@ func TestFetchCategories(t *testing.T) {
 
 	t.Run("正常系: カテゴリ一覧を取得できる", func(t *testing.T) {
 		url := zaim.BaseURL + "home/category"
-		err := testutil.MockResponseFromFile("GET", url, "category")
+		err := testutil.MockResponseFromFile("GET", url, "home/category")
 		assert.NoError(t, err)
 
 		// カテゴリ一覧を取得する

@@ -118,7 +118,7 @@ func TestCreateIncome(t *testing.T) {
 
 	t.Run("正常系: 収入情報を正しく登録できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("POST", zaim.BaseURL+"home/money/income", "income")
+		err := testutil.MockResponseFromFile("POST", zaim.BaseURL+"home/money/income", "home/money/income")
 		assert.NoError(t, err)
 
 		// 収入情報を登録
@@ -184,7 +184,7 @@ func TestUpdateIncome(t *testing.T) {
 
 	t.Run("正常系: 収入情報を正しく更新できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("PUT", zaim.BaseURL+"home/money/income/11820767", "income")
+		err := testutil.MockResponseFromFile("PUT", zaim.BaseURL+"home/money/income/11820767", "home/money/income")
 		assert.NoError(t, err)
 
 		// 収入情報を更新
@@ -236,7 +236,7 @@ func TestDeleteIncome(t *testing.T) {
 
 	t.Run("正常系: 収入情報を正しく削除できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("DELETE", zaim.BaseURL+"home/money/income/11820767", "income")
+		err := testutil.MockResponseFromFile("DELETE", zaim.BaseURL+"home/money/income/11820767", "home/money/income")
 		assert.NoError(t, err)
 
 		// 収入情報を削除

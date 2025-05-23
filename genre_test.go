@@ -51,7 +51,7 @@ func TestFetchGenres(t *testing.T) {
 
 	t.Run("正常系: ジャンル一覧を取得できる", func(t *testing.T) {
 		url := zaim.BaseURL + "home/genre"
-		err := testutil.MockResponseFromFile("GET", url, "genre")
+		err := testutil.MockResponseFromFile("GET", url, "home/genre")
 		assert.NoError(t, err)
 
 		// ジャンル一覧を取得する

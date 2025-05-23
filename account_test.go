@@ -51,7 +51,7 @@ func TestFetchAccounts(t *testing.T) {
 
 	t.Run("正常系: 口座一覧を取得できる", func(t *testing.T) {
 		url := zaim.BaseURL + "home/account"
-		err := testutil.MockResponseFromFile("GET", url, "account")
+		err := testutil.MockResponseFromFile("GET", url, "home/account")
 		assert.NoError(t, err)
 
 		// 口座一覧を取得する

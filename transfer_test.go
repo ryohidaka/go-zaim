@@ -117,7 +117,7 @@ func TestCreateTransfer(t *testing.T) {
 
 	t.Run("正常系: 振替情報を正しく登録できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("POST", zaim.BaseURL+"home/money/transfer", "transfer")
+		err := testutil.MockResponseFromFile("POST", zaim.BaseURL+"home/money/transfer", "home/money/transfer")
 		assert.NoError(t, err)
 
 		// 振替情報を登録
@@ -178,7 +178,7 @@ func TestUpdateTransfer(t *testing.T) {
 
 	t.Run("正常系: 振替情報を正しく更新できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("PUT", zaim.BaseURL+"home/money/transfer/11820767", "transfer")
+		err := testutil.MockResponseFromFile("PUT", zaim.BaseURL+"home/money/transfer/11820767", "home/money/transfer")
 		assert.NoError(t, err)
 
 		// 振替情報を更新
@@ -225,7 +225,7 @@ func TestDeleteTransfer(t *testing.T) {
 
 	t.Run("正常系: 振替情報を正しく削除できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("DELETE", zaim.BaseURL+"home/money/transfer/11820767", "transfer")
+		err := testutil.MockResponseFromFile("DELETE", zaim.BaseURL+"home/money/transfer/11820767", "home/money/transfer")
 		assert.NoError(t, err)
 
 		// 振替情報を削除
