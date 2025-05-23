@@ -122,7 +122,7 @@ func TestCreatePayment(t *testing.T) {
 
 	t.Run("正常系: 支払情報を正しく登録できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("POST", zaim.BaseURL+"home/money/payment", "transaction")
+		err := testutil.MockResponseFromFile("POST", zaim.BaseURL+"home/money/payment", "payment")
 		assert.NoError(t, err)
 
 		// 支払情報を登録
@@ -189,7 +189,7 @@ func TestUpdatePayment(t *testing.T) {
 
 	t.Run("正常系: 支払情報を正しく更新できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("PUT", zaim.BaseURL+"home/money/payment/11820767", "transaction")
+		err := testutil.MockResponseFromFile("PUT", zaim.BaseURL+"home/money/payment/11820767", "payment")
 		assert.NoError(t, err)
 
 		// 支払情報を更新
@@ -241,7 +241,7 @@ func TestDeletePayment(t *testing.T) {
 
 	t.Run("正常系: 支払情報を正しく削除できる", func(t *testing.T) {
 		// 正常なレスポンスを返すモックを設定
-		err := testutil.MockResponseFromFile("DELETE", zaim.BaseURL+"home/money/payment/11820767", "transaction")
+		err := testutil.MockResponseFromFile("DELETE", zaim.BaseURL+"home/money/payment/11820767", "payment")
 		assert.NoError(t, err)
 
 		// 支払情報を削除
