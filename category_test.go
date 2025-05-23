@@ -35,6 +35,21 @@ func ExampleClient_FetchCategories() {
 	}
 }
 
+func ExampleClient_FetchDefaultCategories() {
+	// クライアント初期化
+	c := zaim.NewZaimClient()
+
+	// デフォルトのカテゴリ一覧を取得する
+	categories, err := c.FetchDefaultCategories()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, c := range categories {
+		println(c.Name)
+	}
+}
+
 func TestFetchCategories(t *testing.T) {
 	// モックのHTTPサーバーを有効化
 	httpmock.Activate()
