@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.10.0](https://github.com/ryohidaka/go-zaim/compare/v0.9.0...v0.10.0) (2025-05-23)
+
+
+### Features
+
+* **api:** CreateTransfer() を追加 ([4919062](https://github.com/ryohidaka/go-zaim/commit/49190629190b04ec6caaaa093d39fc21089aef00))
+* **api:** DeleteTransfer() を追加 ([cd34829](https://github.com/ryohidaka/go-zaim/commit/cd34829c73c62e34454ec1fadba9c793840c3c96))
+* **api:** UpdateTransfer() を追加 ([d532e52](https://github.com/ryohidaka/go-zaim/commit/d532e5252075486b22aece0485c99ef9e65b8b7a))
+
 ## [0.9.0](https://github.com/ryohidaka/go-zaim/compare/v0.8.0...v0.9.0) (2025-05-22)
 
 
