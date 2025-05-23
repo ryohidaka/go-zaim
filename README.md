@@ -153,6 +153,13 @@ res, err := c.UpdateTransfer(381, zaim.CreateTransferParams{
 res, err := c.DeleteTransfer(381)
 ```
 
+### 通貨
+
+```go
+// 通貨一覧を取得する
+currencies, err := c.FetchCurrency()
+```
+
 ## リンク
 
 - [API リファレンス (Zaim developers)](https://dev.zaim.net/)
