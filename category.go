@@ -14,3 +14,13 @@ func (c *Client) FetchCategories() ([]models.Category, error) {
 
 	return api.ParseCategoryResponse(body)
 }
+
+// FetchDefaultCategories はデフォルトのカテゴリ一覧を取得する
+func (c *Client) FetchDefaultCategories() ([]models.DefaultCategory, error) {
+	body, err := c.get("category", nil, false)
+	if err != nil {
+		return nil, err
+	}
+
+	return api.ParseDefaultCategoryResponse(body)
+}

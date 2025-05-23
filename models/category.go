@@ -12,3 +12,9 @@ type Category struct {
 	Active           bool      `json:"active"`
 	Modified         time.Time `json:"modified"`
 }
+
+type DefaultCategory struct {
+	ID   uint16 `json:"id"`
+	Mode Mode   `json:"mode"`
+	Name string `json:"name"`
+}

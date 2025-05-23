@@ -28,3 +28,15 @@ func ParseCategoryResponse(body []byte) ([]models.Category, error) {
 
 	return categories, nil
 }
+
+func ParseDefaultCategoryResponse(body []byte) ([]models.DefaultCategory, error) {
+	var raw struct {
+		Categories []models.DefaultCategory `json:"categories"`
+	}
+
+	if err := json.Unmarshal(body, &raw); err != nil {
+		return nil, err
+	}
+
+	return raw.Categories, nil
+}
