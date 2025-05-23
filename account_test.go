@@ -108,3 +108,52 @@ func TestFetchAccounts(t *testing.T) {
 		assert.Empty(t, accounts)
 	})
 }
+
+func TestFetchDefaultAccounts(t *testing.T) {
+	// モックのHTTPサーバーを有効化
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	c := zaim.NewZaimClient()
+
+	t.Run("正常系: デフォルト口座一覧を取得できる", func(t *testing.T) {
+		url := zaim.BaseURL + "account"
+		err := testutil.MockResponseFromFile("GET", url, "account")
+		assert.NoError(t, err)
+
+		// デフォルト口座一覧を取得する
+		accounts, err := c.FetchDefaultAccounts()
+
+		// レスポンスの確認
+		assert.NoError(t, err)
+		assert.Equal(t, len(accounts), 2)
+
+		expected := []models.DefaultAccount{
+			{
+				ID:   1,
+				Name: "Wallet",
+			},
+			{
+				ID:   2,
+				Name: "Savings",
+			},
+		}
+
+		for i, a := range accounts {
+			assert.Equal(t, expected[i].ID, a.ID, "ID が一致しません")
+			assert.Equal(t, expected[i].Name, a.Name, "Name が一致しません")
+		}
+	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		url := zaim.BaseURL + "account"
+		httpmock.RegisterResponder("GET", url, httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		// デフォルト口座一覧を取得する
+		accounts, err := c.FetchDefaultAccounts()
+
+		// レスポンスの確認
+		assert.Error(t, err)
+		assert.Empty(t, accounts)
+	})
+}

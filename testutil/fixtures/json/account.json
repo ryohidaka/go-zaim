@@ -1,0 +1,13 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "name": "Wallet"
+    },
+    {
+      "id": 2,
+      "name": "Savings"
+    }
+  ],
+  "requested": 1321795444
+}
