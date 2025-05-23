@@ -54,3 +54,14 @@ func (c *Client) UpdateTransfer(id uint64, p UpdateTransferParams) (models.Trans
 
 	return api.ParseTransactionResponse(body)
 }
+
+// DeleteTransfer は振替情報を削除する
+func (c *Client) DeleteTransfer(id uint64) (models.Transaction, error) {
+	path := fmt.Sprintf("home/money/transfer/%d", id)
+	body, err := c.delete(path)
+	if err != nil {
+		return models.Transaction{}, err
+	}
+
+	return api.ParseTransactionResponse(body)
+}
