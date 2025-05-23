@@ -22,13 +22,19 @@ type ZaimParams struct {
 	TokenSecret    string
 }
 
-// 認証情報を使って新しいAPIクライアントを作成する
+// NewZaimClient は、Zaim API と通信するための新しいクライアントを作成する。
+// 認証情報が提供されている場合、OAuth 1.0a を用いた認証付きクライアントを生成する。
 //
 // [Authorize with Oauth 1.0a]
 //
 // [Authorize with Oauth 1.0a]: https://dev.zaim.net/home/api/authorize
-func NewZaimClient(params ZaimParams) *Client {
-	oAuth1Client := auth.NewOAuth1Client(auth.OAuth1Params(params))
+func NewZaimClient(params ...ZaimParams) *Client {
+	var oAuth1Client *http.Client
+
+	if len(params) > 0 {
+		oAuth1Client = auth.NewOAuth1Client(auth.OAuth1Params(params[0]))
+	}
+
 	return &Client{
 		oAuth1Client: oAuth1Client,
 		httpClient:   &http.Client{},
