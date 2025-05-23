@@ -35,6 +35,21 @@ func ExampleClient_FetchGenres() {
 	}
 }
 
+func ExampleClient_FetchDefaultGenres() {
+	// クライアント初期化
+	c := zaim.NewZaimClient()
+
+	// デフォルトのジャンル一覧を取得する
+	genres, err := c.FetchDefaultGenres()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, g := range genres {
+		println(g.Name)
+	}
+}
+
 func TestFetchGenres(t *testing.T) {
 	// モックのHTTPサーバーを有効化
 	httpmock.Activate()
