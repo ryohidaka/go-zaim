@@ -12,3 +12,8 @@ type Account struct {
 	WebsiteID       uint32    `json:"website_id"`
 	ParentAccountID uint32    `json:"parent_account_id"`
 }
+
+type DefaultAccount struct {
+	ID   uint8  `json:"id"`
+	Name string `json:"name"`
+}

@@ -14,3 +14,13 @@ func (c *Client) FetchAccounts() ([]models.Account, error) {
 
 	return api.ParseAccountResponse(body)
 }
+
+// FetchDefaultAccounts はデフォルトの口座一覧を取得する
+func (c *Client) FetchDefaultAccounts() ([]models.DefaultAccount, error) {
+	body, err := c.get("account", nil, false)
+	if err != nil {
+		return nil, err
+	}
+
+	return api.ParseDefaultAccountResponse(body)
+}

@@ -28,3 +28,15 @@ func ParseAccountResponse(body []byte) ([]models.Account, error) {
 
 	return accounts, nil
 }
+
+func ParseDefaultAccountResponse(body []byte) ([]models.DefaultAccount, error) {
+	var raw struct {
+		Accounts []models.DefaultAccount `json:"accounts"`
+	}
+
+	if err := json.Unmarshal(body, &raw); err != nil {
+		return nil, err
+	}
+
+	return raw.Accounts, nil
+}
