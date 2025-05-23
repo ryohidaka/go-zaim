@@ -105,3 +105,55 @@ func TestFetchCategories(t *testing.T) {
 		assert.Empty(t, categories)
 	})
 }
+
+func TestFetchDefaultCategories(t *testing.T) {
+	// モックのHTTPサーバーを有効化
+	httpmock.Activate()
+	defer httpmock.DeactivateAndReset()
+
+	c := zaim.NewZaimClient()
+
+	t.Run("正常系: デフォルトのカテゴリ一覧を取得できる", func(t *testing.T) {
+		url := zaim.BaseURL + "category"
+		err := testutil.MockResponseFromFile("GET", url, "category")
+		assert.NoError(t, err)
+
+		// デフォルトのカテゴリ一覧を取得する
+		categories, err := c.FetchDefaultCategories()
+
+		// レスポンスの確認
+		assert.NoError(t, err)
+		assert.Equal(t, len(categories), 2)
+
+		expected := []models.DefaultCategory{
+			{
+				ID:   101,
+				Name: "Food",
+				Mode: models.Payment,
+			},
+			{
+				ID:   102,
+				Name: "House",
+				Mode: models.Payment,
+			},
+		}
+
+		for i, c := range categories {
+			assert.Equal(t, expected[i].ID, c.ID, "ID が一致しません")
+			assert.Equal(t, expected[i].Name, c.Name, "Name が一致しません")
+			assert.Equal(t, expected[i].Mode, c.Mode, "Mode が一致しません")
+		}
+	})
+
+	t.Run("異常系: サーバーエラー時にエラーを返却する", func(t *testing.T) {
+		url := zaim.BaseURL + "category"
+		httpmock.RegisterResponder("GET", url, httpmock.NewStringResponder(500, `Internal Server Error`))
+
+		// デフォルトのカテゴリ一覧を取得する
+		categories, err := c.FetchDefaultCategories()
+
+		// レスポンスの確認
+		assert.Error(t, err)
+		assert.Empty(t, categories)
+	})
+}

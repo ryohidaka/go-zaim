@@ -1,0 +1,15 @@
+{
+  "categories": [
+    {
+      "id": 101,
+      "mode": "payment",
+      "name": "Food"
+    },
+    {
+      "id": 102,
+      "mode": "payment",
+      "name": "House"
+    }
+  ],
+  "requested": 1321795444
+}
