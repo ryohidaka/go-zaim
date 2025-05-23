@@ -35,6 +35,21 @@ func ExampleClient_FetchAccounts() {
 	}
 }
 
+func ExampleClient_FetchDefaultAccounts() {
+	// クライアント初期化
+	c := zaim.NewZaimClient()
+
+	// デフォルト口座一覧を取得する
+	accounts, err := c.FetchDefaultAccounts()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, a := range accounts {
+		println(a.Name)
+	}
+}
+
 func TestFetchAccounts(t *testing.T) {
 	// モックのHTTPサーバーを有効化
 	httpmock.Activate()
