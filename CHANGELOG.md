@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/ryohidaka/go-zaim/compare/v0.12.0...v0.13.0) (2025-05-23)
+
+
+### Features
+
+* **api:** FetchDefaultCategories() を追加 ([5f0e36a](https://github.com/ryohidaka/go-zaim/commit/5f0e36a626af30c46ede3b73c76cd4d4eac1a788))
+
 ## [0.12.0](https://github.com/ryohidaka/go-zaim/compare/v0.11.0...v0.12.0) (2025-05-23)
 
 
