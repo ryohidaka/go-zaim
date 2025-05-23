@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/ryohidaka/go-zaim/compare/v0.14.0...v0.15.0) (2025-05-23)
+
+
+### Features
+
+* **api:** FetchCurrency() を追加 ([ab3cb2a](https://github.com/ryohidaka/go-zaim/commit/ab3cb2a0e48e047e76854f6853e79e223813ae89))
+
 ## [0.14.0](https://github.com/ryohidaka/go-zaim/compare/v0.13.0...v0.14.0) (2025-05-23)
 
 
