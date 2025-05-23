@@ -1,6 +1,7 @@
 package zaim_test
 
 import (
+	"log"
 	"testing"
 
 	"github.com/jarcoal/httpmock"
@@ -9,6 +10,20 @@ import (
 	"github.com/ryohidaka/go-zaim/testutil"
 	"github.com/stretchr/testify/assert"
 )
+
+func ExampleClient_FetchCurrency() {
+	c := zaim.NewZaimClient()
+
+	// 通貨一覧を取得する
+	currencies, err := c.FetchCurrency()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	for _, currency := range currencies {
+		println(currency.Name)
+	}
+}
 
 func TestFetchCurrency(t *testing.T) {
 	// モックのHTTPサーバーを有効化
