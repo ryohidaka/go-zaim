@@ -75,6 +75,9 @@ categories, err := c.FetchDefaultCategories()
 ```go
 // ジャンル一覧を取得する
 genres, err := c.FetchGenres()
+
+// デフォルトのジャンル一覧を取得する
+genres, err := c.FetchDefaultGenres()
 ```
 
 ### 口座
