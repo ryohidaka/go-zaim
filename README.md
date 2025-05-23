@@ -121,6 +121,29 @@ res, err := c.UpdateIncome(381, zaim.UpdateIncomeParams{
 res, err := c.DeleteIncome(381)
 ```
 
+### 振替情報
+
+```go
+// 振替情報を登録する
+res, err := c.CreateTransfer(zaim.CreateTransferParams{
+    Amount: 1,
+    Date:   time.Now(),
+    FromAccountID: 1,
+    ToAccountID:   2,
+})
+
+// 振替情報を更新する
+res, err := c.UpdateTransfer(381, zaim.CreateTransferParams{
+    Amount: 1,
+    Date:   time.Now(),
+    FromAccountID: 1,
+    ToAccountID:   2,
+})
+
+// 振替情報を削除する
+res, err := c.DeleteTransfer(381)
+```
+
 ## リンク
 
 - [API リファレンス (Zaim developers)](https://dev.zaim.net/)
