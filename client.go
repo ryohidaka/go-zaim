@@ -9,8 +9,9 @@ import (
 )
 
 type Client struct {
-	httpClient *http.Client
-	endpoint   string
+	oAuth1Client *http.Client
+	httpClient   *http.Client
+	endpoint     string
 }
 
 // OAuth1認証情報をまとめたパラメータ構造体
@@ -27,29 +28,34 @@ type ZaimParams struct {
 //
 // [Authorize with Oauth 1.0a]: https://dev.zaim.net/home/api/authorize
 func NewZaimClient(params ZaimParams) *Client {
-	httpClient := auth.NewOAuth1Client(auth.OAuth1Params(params))
+	oAuth1Client := auth.NewOAuth1Client(auth.OAuth1Params(params))
 	return &Client{
-		httpClient: httpClient,
-		endpoint:   BaseURL,
+		oAuth1Client: oAuth1Client,
+		httpClient:   &http.Client{},
+		endpoint:     BaseURL,
 	}
 }
 
 // GETリクエストを送信する
-func (c *Client) get(path string, params url.Values) ([]byte, error) {
-	return httpclient.DoRequest(c.httpClient, http.MethodGet, c.endpoint, path, params)
+func (c *Client) get(path string, params url.Values, useAuth bool) ([]byte, error) {
+	client := c.httpClient
+	if useAuth {
+		client = c.oAuth1Client
+	}
+	return httpclient.DoRequest(client, http.MethodGet, c.endpoint, path, params)
 }
 
 // POSTリクエストを送信する
 func (c *Client) post(path string, params url.Values) ([]byte, error) {
-	return httpclient.DoRequest(c.httpClient, http.MethodPost, c.endpoint, path, params)
+	return httpclient.DoRequest(c.oAuth1Client, http.MethodPost, c.endpoint, path, params)
 }
 
 // PUTリクエストを送信する
 func (c *Client) put(path string, params url.Values) ([]byte, error) {
-	return httpclient.DoRequest(c.httpClient, http.MethodPut, c.endpoint, path, params)
+	return httpclient.DoRequest(c.oAuth1Client, http.MethodPut, c.endpoint, path, params)
 }
 
 // DELETEリクエストを送信する
 func (c *Client) delete(path string) ([]byte, error) {
-	return httpclient.DoRequest(c.httpClient, http.MethodDelete, c.endpoint, path, nil)
+	return httpclient.DoRequest(c.oAuth1Client, http.MethodDelete, c.endpoint, path, nil)
 }

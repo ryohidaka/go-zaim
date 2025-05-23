@@ -23,7 +23,7 @@ func (c *Client) FetchMoney(opts ...FetchMoneyParams) ([]models.Money, error) {
 		return nil, err
 	}
 
-	body, err := c.get("home/money", v)
+	body, err := c.get("home/money", v, true)
 	if err != nil {
 		return nil, err
 	}
@@ -42,7 +42,7 @@ func (c *Client) FetchGroupedMoney(opts ...FetchMoneyParams) ([]models.GroupedMo
 	v.Set("group_by", "receipt_id")
 
 	// API に GET リクエストを送信しレスポンスを取得する
-	body, err := c.get("home/money", v)
+	body, err := c.get("home/money", v, true)
 	if err != nil {
 		return nil, err
 	}

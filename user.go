@@ -7,7 +7,7 @@ import (
 
 // FetchMe は認証ユーザーの情報を取得する
 func (c *Client) FetchMe() (models.Me, error) {
-	body, err := c.get("home/user/verify", nil)
+	body, err := c.get("home/user/verify", nil, true)
 	if err != nil {
 		return models.Me{}, err
 	}

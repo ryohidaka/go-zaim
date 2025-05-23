@@ -7,7 +7,7 @@ import (
 
 // FetchAccounts は口座一覧を取得する
 func (c *Client) FetchAccounts() ([]models.Account, error) {
-	body, err := c.get("home/account", nil)
+	body, err := c.get("home/account", nil, true)
 	if err != nil {
 		return nil, err
 	}
