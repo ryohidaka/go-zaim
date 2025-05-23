@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.12.0](https://github.com/ryohidaka/go-zaim/compare/v0.11.0...v0.12.0) (2025-05-23)
+
+
+### Features
+
+* **api:** FetchDefaultAccounts() を追加 ([1cd4b85](https://github.com/ryohidaka/go-zaim/commit/1cd4b857411ed2c3abbb9252a40640c909b80f2c))
+* **client:** 認証情報無しでもクライアントを作成できるように変更 ([e9e48a2](https://github.com/ryohidaka/go-zaim/commit/e9e48a27bd6a4104a2e14344b6b51aac9f718fb4))
+
 ## [0.11.0](https://github.com/ryohidaka/go-zaim/compare/v0.10.0...v0.11.0) (2025-05-23)
 
 
