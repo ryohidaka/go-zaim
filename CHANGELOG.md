@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.11.0](https://github.com/ryohidaka/go-zaim/compare/v0.10.0...v0.11.0) (2025-05-23)
+
+
+### Features
+
+* **client:** 非認証系クライアントを追加 ([e55d4fd](https://github.com/ryohidaka/go-zaim/commit/e55d4fdf89c1bae2f7e2a87f9a7ae9e8e01b39a6))
+
+
+### Bug Fixes
+
+* **api:** CreateIncome() からレシートID登録処理を削除 ([9264f72](https://github.com/ryohidaka/go-zaim/commit/9264f72e65f7f17599226749c527d96ab827ae08))
+
 ## [0.10.0](https://github.com/ryohidaka/go-zaim/compare/v0.9.0...v0.10.0) (2025-05-23)
 
 
